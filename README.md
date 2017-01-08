@@ -62,5 +62,35 @@ If the test suite passes, you'll be ready to run the app in a local server:
 $ rails server
 ```
 
+ In Rails, this can be accomplished with rails destroy followed by the name of the generated element. In particular, these two commands cancel each other out:
+
+```
+$ rails generate controller StaticPages home help
+$ rails destroy  controller StaticPages home help
+```  
+Similarly, in Chapter 6 we’ll generate a model as follows:
+```
+  $ rails generate model User name:string email:string
+```
+This can be undone using
+```
+  $ rails destroy model User
+```  
+(In this case, it turns out we can omit the other command-line arguments. When you get to Chapter 6, see if you can figure out why.)
+
+Another technique related to models involves undoing migrations, which we saw briefly in Chapter 2 and will see much more of starting in Chapter 6. Migrations change the state of the database using the command
+```
+  $ rails db:migrate
+```  
+We can undo a single migration step using
+```
+  $ rails db:rollback
+```  
+To go all the way back to the beginning, we can use
+```
+  $ rails db:migrate VERSION=0
+```  
+As you might guess, substituting any other number for 0 migrates to that version number, where the version numbers come from listing the migrations sequentially.
+
 For more information, see the
 [*Ruby on Rails Tutorial* book](http://www.railstutorial.org/book).
